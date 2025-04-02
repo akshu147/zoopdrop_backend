@@ -109,7 +109,7 @@ const getlocation = async (req, res) => {
     res.status(200).json({ message: 'Location added', data: result.rows[0] });
   } catch (err) {
     console.error('Error inserting location:', err);
-    res.status(500).json({ message: 'Getlocation failed' });
+    res.status(500).json({ message: 'Location insertion failed' });
   }
 };
 
@@ -152,10 +152,20 @@ const responce = await axios.get(apiUrl)
     console.log(err.message)
   }
 };
+const testing = (req, res)=> {
+  try {
+     const successful = "i love you sunil muskan"
+    res.status(200).json({message:"sucess", data:successful})
+  }
+  catch(err) {
+    res.status(500).json({message:"failedd"})
+  }
+}
 
 
 const data = async () => {
   try {
+   
    const query = await pool.query("select * from user_ride_history where user_id = $1", [8]);
     
    query.rows.map((value)=> {
@@ -169,4 +179,4 @@ const data = async () => {
 
 // data()
 
-module.exports = { userRegister, userLogin, getlocation, calculatedistance }
+module.exports = { userRegister, userLogin, getlocation, calculatedistance , testing}
